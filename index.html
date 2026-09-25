@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ñandutek | Desarrollo web y software a medida</title>
+  <meta name="description" content="Desarrollo web, software a medida, automatización de procesos, integración de sistemas y consultoría tecnológica para empresas que quieren innovar y crecer." />
+  <meta name="keywords" content="desarrollo web, software a medida, soluciones informáticas, automatización de procesos, integración de sistemas, consultoría tecnológica, Paraguay, Ñandutek" />
+  <meta name="theme-color" content="#081426" />
+  <link rel="icon" href="img/icon.png" type="image/png" />
+
+  <!-- Open Graph (vista previa al compartir). Cambiá la URL por la de tu dominio. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_PY" />
+  <meta property="og:site_name" content="Ñandutek" />
+  <meta property="og:title" content="Ñandutek | Desarrollo web y software a medida" />
+  <meta property="og:description" content="Transformamos ideas en soluciones digitales. Desarrollo web, software a medida y automatización para empresas." />
+  <meta property="og:image" content="img/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Ñandutek",
+    "slogan": "Tecnología que impulsa tu futuro.",
+    "email": "contacto@nandutek.com",
+    "telephone": "+595 985 542 379",
+    "description": "Desarrollo web, software a medida, automatización de procesos, integración de sistemas y consultoría tecnológica."
+  }
+  </script>
+
+  <style>
+    /* =========================================================
+       VARIABLES (colores y tipografías)
+       ========================================================= */
+    :root {
+      --navy-950: #050d1a;
+      --navy-900: #081426;
+      --navy-800: #0d1b30;
+      --navy-700: #13243f;
+      --navy-600: #1b3053;
+      --electric: #2878ff;
+      --electric-light: #5a9bff;
+      --electric-dark: #1c5fd6;
+      --cyan: #38c6ff;
+      --white: #ffffff;
+      --mist: #9fb0c8;
+      --mist-dim: #6d7f99;
+      --line: rgba(40, 120, 255, 0.16);
+      --line-strong: rgba(40, 120, 255, 0.35);
+      --font: "Plus Jakarta Sans", system-ui, sans-serif;
+      --font-logo: "Exo 2", var(--font);
+      --mono: ui-monospace, "Cascadia Code", Menlo, monospace;
+      --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* =========================================================
+       BASE
+       ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      background: var(--navy-900);
+      color: var(--mist);
+      font-family: var(--font);
+      line-height: 1.6;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { color: var(--white); letter-spacing: -0.02em; margin: 0; line-height: 1.15; }
+    p { margin: 0; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; margin: 0; padding: 0; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; cursor: pointer; }
+    ::selection { background: rgba(40, 120, 255, 0.4); color: #fff; }
+    :focus-visible { outline: 2px solid var(--electric-light); outline-offset: 3px; border-radius: 6px; }
+
+    .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+    @media (min-width: 640px) { .container { padding: 0 32px; } }
+
+    .section { position: relative; padding: 96px 0; }
+    @media (min-width: 1024px) { .section { padding: 128px 0; } }
+    .section-alt { background: rgba(13, 27, 48, 0.4); }
+    .section-alt::before {
+      content: ""; position: absolute; inset: 0 0 auto 0; height: 1px; opacity: 0.4;
+      background: linear-gradient(90deg, transparent, var(--electric), transparent);
+    }
+
+    .text-gradient {
+      background: linear-gradient(90deg, #2878ff 0%, #5a9bff 55%, #38c6ff 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .text-shine {
+      background: linear-gradient(110deg, #2878ff 20%, #5a9bff 35%, #e6f1ff 50%, #5a9bff 65%, #38c6ff 80%);
+      background-size: 200% auto;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: shine 4s linear infinite;
+    }
+    @keyframes shine { from { background-position: 200% center; } to { background-position: -200% center; } }
+
+    .grid-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(40, 120, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(40, 120, 255, 0.06) 1px, transparent 1px);
+      background-size: 56px 56px;
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+      mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+    }
+    .glow { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(120px); }
+
+    /* Encabezado de sección */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--electric-light);
+    }
+    .eyebrow::before, .eyebrow.center::after { content: ""; width: 24px; height: 1px; background: var(--electric); }
+    .heading { max-width: 640px; }
+    .heading.center { margin: 0 auto; text-align: center; }
+    .heading h2 { font-size: 30px; font-weight: 700; }
+    .heading p { margin-top: 16px; font-size: 17px; }
+    @media (min-width: 640px) { .heading h2 { font-size: 38px; } }
+
+    /* Botones */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 48px; padding: 0 24px; border-radius: 10px; border: 1px solid transparent;
+      font-size: 14px; font-weight: 600; white-space: nowrap; color: #fff;
+      transition: all 0.3s var(--ease);
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn svg { width: 17px; height: 17px; transition: transform 0.3s; }
+    .btn:hover svg.arrow { transform: translateX(4px); }
+    .btn-sm { height: 40px; padding: 0 16px; }
+    .btn-primary { background: var(--electric); box-shadow: 0 8px 30px -8px rgba(40, 120, 255, 0.7); }
+    .btn-primary:hover { background: var(--electric-light); box-shadow: 0 10px 40px -6px rgba(40, 120, 255, 0.9); }
+    .btn-outline { border-color: var(--line-strong); background: rgba(13, 27, 48, 0.4); }
+    .btn-outline:hover { border-color: var(--electric); background: rgba(40, 120, 255, 0.1); }
+
+    /* Tarjetas con halo de luz que sigue al cursor */
+    .card {
+      position: relative; border-radius: 16px; border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(13, 27, 48, 0.9), rgba(8, 20, 38, 0.9));
+    }
+    .card::before {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0;
+      background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(40, 120, 255, 0.14), transparent 60%);
+      transition: opacity 0.4s;
+    }
+    .card:hover::before { opacity: 1; }
+    .card > * { position: relative; }
+    .card-hover { transition: translate 0.35s var(--ease), border-color 0.35s, box-shadow 0.35s; }
+    .card-hover:hover {
+      translate: 0 -6px; border-color: var(--line-strong);
+      box-shadow: 0 20px 50px -20px rgba(40, 120, 255, 0.45);
+    }
+    .icon-box {
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      width: 44px; height: 44px; border-radius: 12px; color: var(--electric-light); background: rgba(40, 120, 255, 0.12);
+      transition: all 0.3s;
+    }
+    .icon-box svg { width: 21px; height: 21px; }
+
+    /* Aparición al hacer scroll */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* =========================================================
+       LOGO
+       ========================================================= */
+    .logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .logo img { height: 48px; width: auto; }
+    .logo-text { font-family: var(--font-logo); font-weight: 600; font-size: 27px; line-height: 1; }
+    .logo-text .a { color: var(--electric); }
+    .logo-text .b { color: #5d7295; }
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+    .header {
+      position: fixed; inset: 0 0 auto 0; z-index: 50;
+      background: rgba(8, 20, 38, 0.4); border-bottom: 1px solid transparent;
+      -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .header.scrolled, .header.open { background: rgba(8, 20, 38, 0.85); border-color: var(--line); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; }
+    .nav { display: none; }
+    .nav ul { display: flex; gap: 4px; }
+    .nav a { position: relative; display: block; padding: 8px 14px; font-size: 14px; font-weight: 500; color: var(--mist); transition: color 0.2s; }
+    .nav a:hover, .nav a.active { color: #fff; }
+    .nav a::after {
+      content: ""; position: absolute; left: 12px; right: 12px; bottom: -2px; height: 2px; border-radius: 2px;
+      background: var(--electric); box-shadow: 0 0 12px var(--electric); transform: scaleX(0); transition: transform 0.3s var(--ease);
+    }
+    .nav a.active::after { transform: scaleX(1); }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .header-actions .btn { display: none; }
+    .menu-btn {
+      display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+      border-radius: 10px; border: 1px solid var(--line); background: none; color: #fff;
+    }
+    .menu-btn svg { width: 20px; height: 20px; }
+    .mobile-menu { display: none; border-top: 1px solid var(--line); background: var(--navy-900); height: calc(100dvh - 72px); overflow-y: auto; }
+    .header.open .mobile-menu { display: block; }
+    .mobile-menu ul { padding-top: 24px; padding-bottom: 24px; display: flex; flex-direction: column; gap: 4px; }
+    .mobile-menu a:not(.btn) { display: block; padding: 14px 16px; border-radius: 10px; font-size: 18px; font-weight: 500; }
+    .mobile-menu a.active { background: rgba(40, 120, 255, 0.1); color: #fff; }
+    .mobile-menu .btn { width: 100%; margin-top: 16px; }
+    @media (min-width: 640px) { .header-actions .btn { display: inline-flex; } }
+    @media (min-width: 1024px) { .nav { display: block; } .menu-btn { display: none; } .mobile-menu { display: none !important; } }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+    .hero { position: relative; overflow: hidden; padding: 112px 0 80px; }
+    @media (min-width: 1024px) { .hero { padding: 144px 0 112px; } }
+    #particles { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.8; }
+    .hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; align-items: center; }
+    @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1.1fr 1.2fr 0.62fr; gap: 36px; } }
+    .hero-text { text-align: center; }
+    @media (min-width: 1024px) { .hero-text { text-align: left; } }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 24px; padding: 6px 14px;
+      border-radius: 999px; border: 1px solid var(--line-strong); background: rgba(40, 120, 255, 0.1);
+      font-size: 12px; font-weight: 500; color: var(--electric-light);
+    }
+    .badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); animation: pulse 4s ease-in-out infinite; }
+    .rotating { display: inline-block; font-weight: 600; color: #fff; transition: opacity 0.3s, transform 0.3s; }
+    .rotating.out { opacity: 0; transform: translateY(-8px); }
+    .hero h1 { font-size: 34px; font-weight: 800; line-height: 1.08; }
+    .hero h1 .line { display: block; }
+    .hero h1 .line + .line { margin-top: 4px; }
+    .word { display: inline-block; opacity: 0; filter: blur(10px); transform: translateY(14px); animation: blur-in 0.6s var(--ease) forwards; }
+    @keyframes blur-in { to { opacity: 1; filter: blur(0); transform: none; } }
+    .word.text-shine { animation: blur-in 0.6s var(--ease) forwards, shine 4s linear infinite; }
+    .hero-desc { max-width: 560px; margin: 24px auto 0; font-size: 16px; }
+    .hero-desc strong { color: #fff; font-weight: 600; }
+    .hero-buttons { display: flex; flex-direction: column; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px; }
+    @media (min-width: 640px) { .hero h1 { font-size: 48px; } .hero-buttons { flex-direction: row; } }
+    @media (min-width: 1024px) {
+      .hero h1 { font-size: 38px; }
+      .hero-desc { margin-left: 0; }
+      .hero-buttons { justify-content: flex-start; }
+    }
+    @media (min-width: 1280px) { .hero h1 { font-size: 45px; } }
+
+    /* Ilustración del hero */
+    .illus { position: relative; width: 100%; max-width: 640px; margin: 0 auto; aspect-ratio: 560 / 440; perspective: 1000px; }
+    .illus-inner { position: absolute; inset: 0; transition: transform 0.25s ease-out; transform-style: preserve-3d; }
+    .illus-glow { position: absolute; inset: 8%; border-radius: 50%; background: rgba(40, 120, 255, 0.25); filter: blur(70px); animation: pulse 4s ease-in-out infinite; }
+    .illus-rings { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .spin { transform-origin: 280px 200px; animation: spin 60s linear infinite; }
+    .laptop { position: absolute; left: 0; right: 0; top: 10%; }
+    .float-card {
+      position: absolute; border-radius: 12px; border: 1px solid var(--line-strong);
+      background: rgba(13, 27, 48, 0.88); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+      box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.6);
+    }
+    .float { animation: float 6s ease-in-out infinite; }
+    .float-slow { animation: float 9s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes pulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes blink { to { visibility: hidden; } }
+    .blink { animation: blink 1.1s steps(2, start) infinite; }
+
+    .fc-metrics { top: 2%; left: 0; width: 34%; min-width: 120px; padding: 12px; }
+    .fc-row { display: flex; justify-content: space-between; font-size: 10px; }
+    .fc-bars { display: flex; align-items: flex-end; gap: 4px; height: 40px; margin-top: 8px; }
+    .fc-bars span { flex: 1; border-radius: 2px; background: linear-gradient(to top, var(--electric-dark), var(--electric-light)); }
+    .fc-api { top: 4%; right: 4%; display: flex; align-items: center; gap: 8px; padding: 8px 12px; }
+    .fc-api .icon-box { width: 28px; height: 28px; border-radius: 8px; }
+    .fc-api .icon-box svg { width: 15px; height: 15px; }
+    .fc-deploy { bottom: 6%; left: 2%; display: flex; align-items: center; gap: 8px; padding: 8px 12px; font-size: 12px; font-weight: 600; color: #fff; }
+    .ok { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .ok svg { width: 14px; height: 14px; }
+    .phone {
+      position: absolute; right: 0; bottom: 8%; width: 96px; padding: 6px; border-radius: 18px;
+      border: 1px solid var(--line-strong); background: var(--navy-900); box-shadow: 0 20px 50px -10px rgba(40, 120, 255, 0.5);
+    }
+    .phone-screen { border-radius: 13px; background: #060e1c; padding: 8px; }
+    .ph-bar { height: 4px; width: 28px; margin: 0 auto 8px; border-radius: 4px; background: var(--navy-600); }
+    .ph-hero { margin-bottom: 8px; padding: 6px; border-radius: 6px; background: linear-gradient(135deg, rgba(40, 120, 255, 0.6), rgba(56, 198, 255, 0.3)); }
+    .ph-hero i { display: block; height: 5px; border-radius: 3px; background: rgba(255, 255, 255, 0.8); width: 60%; }
+    .ph-hero i + i { margin-top: 4px; width: 80%; background: rgba(255, 255, 255, 0.4); }
+    .ph-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .ph-grid span { height: 26px; border-radius: 6px; border: 1px solid var(--line); background: var(--navy-800); }
+    .ph-btn { margin-top: 8px; height: 14px; border-radius: 6px; background: var(--electric); }
+    .chip {
+      position: absolute; display: none; align-items: center; gap: 6px; padding: 5px 9px; border-radius: 8px;
+      border: 1px solid var(--line); background: rgba(8, 20, 38, 0.85); font-size: 10px;
+    }
+    .chip svg { width: 12px; height: 12px; color: var(--electric-light); }
+    .chip-code { top: 0; left: 44%; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--electric-light); background: rgba(40, 120, 255, 0.15); border-color: var(--line-strong); }
+    @media (min-width: 640px) { .chip { display: flex; } }
+
+    /* Lista de servicios del hero */
+    .hero-services { display: grid; gap: 10px; }
+    @media (min-width: 640px) { .hero-services { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .hero-services { grid-template-columns: 1fr; } }
+    .hero-services a {
+      display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px;
+      border: 1px solid var(--line); background: rgba(13, 27, 48, 0.6); transition: all 0.3s;
+    }
+    .hero-services a:hover { translate: -4px 0; border-color: var(--line-strong); background: var(--navy-800); box-shadow: 0 0 24px -6px rgba(40, 120, 255, 0.5); }
+    .hero-services .icon-box { width: 36px; height: 36px; border-radius: 10px; }
+    .hero-services .icon-box svg { width: 18px; height: 18px; }
+    .hero-services a:hover .icon-box { background: var(--electric); color: #fff; }
+    .hero-services span.t { flex: 1; font-size: 14px; font-weight: 500; color: #fff; }
+    .hero-services .chev { width: 16px; height: 16px; color: var(--mist-dim); }
+
+    /* =========================================================
+       CINTA DE SERVICIOS
+       ========================================================= */
+    .marquee {
+      display: flex; overflow: hidden; padding: 20px 0; border-block: 1px solid var(--line); background: rgba(5, 13, 26, 0.6);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    }
+    .marquee-track { display: flex; flex-shrink: 0; animation: marquee 35s linear infinite; }
+    .marquee-track .grp { display: flex; flex-shrink: 0; }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    .marquee-track span { display: flex; align-items: center; gap: 40px; padding-right: 40px; font-size: 20px; font-weight: 600; color: rgba(255, 255, 255, 0.8); white-space: nowrap; }
+    .marquee-track span::after { content: "✦"; color: var(--electric); font-size: 16px; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    /* =========================================================
+       NOSOTROS
+       ========================================================= */
+    .about { overflow: hidden; }
+    .two-col { display: grid; grid-template-columns: minmax(0, 1fr); gap: 56px; align-items: center; }
+    @media (min-width: 1024px) { .two-col { grid-template-columns: 1fr 1fr; gap: 80px; } }
+    .about p + p { margin-top: 16px; }
+    .about .lead { margin-top: 24px; }
+    .about strong { color: #fff; font-weight: 600; }
+    .checks { margin-top: 32px; display: grid; gap: 12px; }
+    .checks li { display: flex; gap: 12px; font-size: 14px; color: rgba(255, 255, 255, 0.9); }
+    .checks svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; color: var(--electric); }
+    .about .btn { margin-top: 40px; }
+    .workspace { position: relative; overflow: hidden; border-radius: 16px; border: 1px solid var(--line-strong); box-shadow: 0 30px 80px -30px rgba(40, 120, 255, 0.5); }
+    .values { position: relative; margin-top: -40px; padding: 0 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .values li { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 8px; text-align: center; font-size: 12px; font-weight: 600; color: #fff; }
+    .values li:last-child { grid-column: span 2; }
+    .values .icon-box { width: 40px; height: 40px; box-shadow: 0 0 20px -4px rgba(40, 120, 255, 0.5); }
+    @media (min-width: 640px) { .values { grid-template-columns: repeat(3, 1fr); } .values li:last-child { grid-column: auto; } }
+    @media (min-width: 1280px) { .values { grid-template-columns: repeat(5, 1fr); padding: 0 20px; } }
+
+    /* =========================================================
+       SERVICIOS
+       ========================================================= */
+    .services-grid { margin-top: 64px; display: grid; gap: 24px; }
+    @media (min-width: 640px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+    .service { display: flex; flex-direction: column; overflow: hidden; padding: 28px; }
+    .service .num { position: absolute; top: 24px; right: 28px; font-family: var(--mono); font-size: 14px; color: rgba(109, 127, 153, 0.6); }
+    .service .icon-box { width: 56px; height: 56px; border-radius: 16px; border: 1px solid var(--line-strong); background: linear-gradient(135deg, rgba(40, 120, 255, 0.25), rgba(40, 120, 255, 0.05)); }
+    .service .icon-box svg { width: 26px; height: 26px; }
+    .service:hover .icon-box { color: #fff; box-shadow: 0 0 30px -4px var(--electric); }
+    .service h3 { margin-top: 24px; font-size: 20px; font-weight: 600; }
+    .service p { margin-top: 12px; flex: 1; font-size: 14px; }
+    .service .more { margin-top: 24px; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--electric-light); }
+    .service .more:hover { color: #fff; }
+    .service .more svg { width: 16px; height: 16px; }
+
+    /* =========================================================
+       PROCESO
+       ========================================================= */
+    .timeline { position: relative; margin-top: 80px; }
+    .timeline-line { position: absolute; pointer-events: none; }
+    .timeline-line.h { display: none; top: 36px; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, rgba(40, 120, 255, 0.2), var(--electric), rgba(40, 120, 255, 0.2)); box-shadow: 0 0 8px var(--electric); }
+    .timeline-line.v { top: 36px; bottom: 36px; left: 36px; width: 1px; background: linear-gradient(180deg, var(--electric), rgba(40, 120, 255, 0.1)); }
+    .steps { position: relative; display: grid; gap: 40px; }
+    .step { display: flex; gap: 24px; }
+    .step-icon { position: relative; flex-shrink: 0; }
+    .step-icon .circle {
+      display: flex; align-items: center; justify-content: center; width: 72px; height: 72px; border-radius: 50%;
+      border: 1px solid var(--line-strong); background: var(--navy-900); color: var(--electric-light);
+      box-shadow: 0 0 0 6px var(--navy-900), 0 0 30px -4px rgba(40, 120, 255, 0.6); transition: all 0.3s;
+    }
+    .step-icon .circle:hover { background: var(--electric); color: #fff; }
+    .step-icon svg { width: 26px; height: 26px; }
+    .step-icon .n { position: absolute; top: -4px; right: -4px; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--electric); color: #fff; font-size: 11px; font-weight: 700; }
+    .step h3 { font-size: 18px; font-weight: 600; padding-top: 8px; }
+    .step p { margin-top: 8px; font-size: 14px; }
+    @media (min-width: 1024px) {
+      .timeline-line.h { display: block; }
+      .timeline-line.v { display: none; }
+      .steps { grid-template-columns: repeat(5, 1fr); gap: 24px; }
+      .step { flex-direction: column; align-items: center; gap: 24px; text-align: center; }
+      .step h3 { padding-top: 0; }
+    }
+
+    /* =========================================================
+       POR QUÉ ELEGIRNOS
+       ========================================================= */
+    .why { overflow: hidden; }
+    @media (min-width: 1024px) { .why .two-col { grid-template-columns: 1.1fr 1fr; } }
+    .advantages { margin-top: 40px; display: grid; gap: 16px; }
+    @media (min-width: 640px) { .advantages { grid-template-columns: 1fr 1fr; } }
+    .advantage { display: flex; gap: 16px; padding: 20px; }
+    .advantage:hover .icon-box { background: var(--electric); color: #fff; }
+    .advantage h3 { font-size: 15px; font-weight: 600; line-height: 1.35; }
+    .advantage p { margin-top: 6px; font-size: 14px; }
+    .why-illus { position: relative; width: 100%; max-width: 520px; margin: 0 auto; aspect-ratio: 1; }
+    .why-illus svg.orbits { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .why-center {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      display: flex; align-items: center; justify-content: center; width: 144px; height: 144px; border-radius: 32px;
+      border: 1px solid var(--line-strong); background: linear-gradient(135deg, var(--navy-700), var(--navy-900));
+      box-shadow: 0 0 60px -10px var(--electric);
+    }
+    .why-center img { height: 96px; width: auto; }
+    .panel { position: absolute; padding: 12px; border-radius: 12px; border: 1px solid var(--line-strong); background: rgba(8, 20, 38, 0.9); }
+    .panel-code { top: 4%; left: 0; width: 46%; font-family: var(--mono); font-size: 11px; line-height: 1.7; color: var(--mist); }
+    .dots { display: flex; gap: 4px; margin-bottom: 8px; }
+    .dots i { width: 8px; height: 8px; border-radius: 50%; }
+    .panel-title { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #fff; }
+    .panel-title svg { width: 13px; height: 13px; color: var(--electric-light); }
+    .panel-perf { top: 14%; right: 0; width: 38%; }
+    .panel-git { bottom: 14%; left: 2%; display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; }
+    .panel-git svg { width: 15px; height: 15px; color: var(--electric-light); }
+    .panel-ux { bottom: 6%; right: 4%; width: 40%; }
+    .bar { height: 6px; margin-top: 6px; border-radius: 6px; background: var(--navy-700); }
+    .bar i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--electric), var(--cyan)); }
+
+    /* =========================================================
+       PROYECTOS
+       ========================================================= */
+    .notice { display: flex; gap: 10px; align-items: flex-start; max-width: 680px; margin: 32px auto 0; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--line); background: rgba(8, 20, 38, 0.6); font-size: 14px; }
+    .notice svg { width: 17px; height: 17px; flex-shrink: 0; margin-top: 2px; color: var(--electric-light); }
+    .notice strong { color: #fff; }
+    .projects { margin-top: 48px; display: grid; gap: 24px; }
+    @media (min-width: 768px) { .projects { grid-template-columns: 1fr 1fr; } }
+    .project { overflow: hidden; }
+    .project-img { position: relative; aspect-ratio: 16 / 9; overflow: hidden; padding: 28px; border-bottom: 1px solid var(--line); background: linear-gradient(135deg, var(--navy-700), var(--navy-800), var(--navy-900)); }
+    .project-img .tag { position: absolute; top: 16px; left: 16px; z-index: 2; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line-strong); background: rgba(8, 20, 38, 0.9); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--electric-light); }
+    .browser { position: relative; height: 100%; max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; overflow: hidden; border-radius: 8px; border: 1px solid var(--line-strong); background: #060e1c; box-shadow: 0 20px 50px -20px rgba(40, 120, 255, 0.6); transition: transform 0.5s; }
+    .project:hover .browser { transform: scale(1.03); }
+    .browser-bar { display: flex; align-items: center; gap: 5px; padding: 7px 10px; border-bottom: 1px solid var(--line); background: var(--navy-800); }
+    .browser-bar i { width: 7px; height: 7px; border-radius: 50%; }
+    .browser-bar span { flex: 1; margin-left: 8px; padding: 1px 8px; border-radius: 4px; background: var(--navy-900); font-family: var(--mono); font-size: 9px; color: var(--mist-dim); }
+    .browser-body { flex: 1; padding: 10px; }
+    .sk { height: 6px; border-radius: 4px; background: var(--navy-600); }
+    .mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .mini-card { padding: 6px; border-radius: 6px; border: 1px solid var(--line); background: var(--navy-800); }
+    .mini-card .img { aspect-ratio: 1; border-radius: 4px; margin-bottom: 6px; }
+    .project-body { padding: 24px; }
+    .project-body .title { display: flex; align-items: center; gap: 12px; }
+    .project-body .icon-box { width: 36px; height: 36px; }
+    .project-body .icon-box svg { width: 18px; height: 18px; }
+    .project-body h3 { font-size: 18px; font-weight: 600; }
+    .project-body p { margin-top: 12px; font-size: 14px; }
+    .tags { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .tags li { padding: 4px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--navy-900); font-size: 12px; font-weight: 500; }
+
+    /* =========================================================
+       PREGUNTAS FRECUENTES
+       ========================================================= */
+    .faq-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; }
+    @media (min-width: 1024px) { .faq-grid { grid-template-columns: 0.8fr 1.2fr; gap: 80px; } .faq-grid .heading { position: sticky; top: 112px; align-self: start; } }
+    .faq { display: grid; gap: 12px; }
+    .faq details { border-radius: 12px; border: 1px solid var(--line); background: rgba(8, 20, 38, 0.6); transition: border-color 0.3s, background 0.3s; }
+    .faq details[open] { border-color: var(--line-strong); background: var(--navy-800); box-shadow: 0 0 40px -16px rgba(40, 120, 255, 0.6); }
+    .faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; list-style: none; cursor: pointer; font-weight: 600; color: #fff; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq .plus { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line-strong); color: var(--electric-light); transition: all 0.3s; }
+    .faq .plus svg { width: 16px; height: 16px; }
+    .faq details[open] .plus { transform: rotate(45deg); background: var(--electric); border-color: var(--electric); color: #fff; }
+    .faq details p { padding: 0 24px 20px; font-size: 14px; }
+
+    /* =========================================================
+       CONTACTO
+       ========================================================= */
+    .contact { overflow: hidden; }
+    .contact-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; }
+    @media (min-width: 1024px) { .contact-grid { grid-template-columns: 0.9fr 1.1fr; gap: 64px; } }
+    .contact h2 { font-size: 32px; font-weight: 800; }
+    @media (min-width: 640px) { .contact h2 { font-size: 40px; } }
+    @media (min-width: 1024px) { .contact h2 { font-size: 48px; } }
+    .contact .lead { margin-top: 24px; max-width: 440px; font-size: 18px; }
+    .contact-info { margin-top: 40px; display: grid; gap: 16px; }
+    @media (min-width: 640px) { .contact-info { grid-template-columns: 1fr 1fr; } }
+    .contact-info li { display: flex; align-items: center; gap: 16px; }
+    .contact-info .icon-box { border: 1px solid var(--line-strong); }
+    .contact-info small { display: block; font-size: 12px; color: var(--mist-dim); }
+    .contact-info b { display: block; font-size: 14px; font-weight: 500; color: #fff; }
+    .contact-info a b:hover { color: var(--electric-light); }
+    .form { padding: 24px; box-shadow: 0 30px 80px -30px rgba(40, 120, 255, 0.45); }
+    @media (min-width: 640px) { .form { padding: 32px; } }
+    .form-grid { display: grid; gap: 20px; }
+    @media (min-width: 640px) { .form-grid { grid-template-columns: 1fr 1fr; } .form-grid .full { grid-column: span 2; } }
+    .field label { display: block; margin-bottom: 6px; font-size: 12px; font-weight: 600; color: rgba(255, 255, 255, 0.9); }
+    .field label em { font-style: normal; color: var(--electric-light); }
+    .field input, .field select, .field textarea {
+      width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--line); background: rgba(8, 20, 38, 0.7);
+      color: #fff; font: inherit; font-size: 14px; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .field textarea { resize: vertical; min-height: 120px; }
+    .field select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235a9bff' stroke-width='2.5'><path d='m6 9 6 6 6-6'/></svg>"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+    .field select option { background: var(--navy-800); }
+    .field input::placeholder, .field textarea::placeholder { color: rgba(109, 127, 153, 0.7); }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--electric); box-shadow: 0 0 0 3px rgba(40, 120, 255, 0.18); }
+    .field.invalid input, .field.invalid textarea { border-color: rgba(251, 113, 133, 0.7); }
+    .field .error { display: none; margin-top: 6px; font-size: 12px; color: #fb7185; }
+    .field.invalid .error { display: block; }
+    .form-note { margin-top: 20px; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(56, 198, 255, 0.3); background: rgba(56, 198, 255, 0.06); font-size: 12px; color: #bfe9ff; }
+    .form-buttons { margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .form-buttons .btn { flex: 1; }
+    .btn-wa:hover { border-color: #25d366; background: rgba(37, 211, 102, 0.1); }
+    .btn-wa svg { color: #25d366; }
+    @media (min-width: 640px) { .form-buttons { flex-direction: row; } }
+    .form-foot { margin-top: 16px; text-align: center; font-size: 11px; color: var(--mist-dim); }
+
+    /* =========================================================
+       INFORMACIÓN TÉCNICA (plegada)
+       ========================================================= */
+    .tech { padding: 40px 0; }
+    .tech details { max-width: 900px; margin: 0 auto; border-radius: 16px; border: 1px solid var(--line); background: rgba(13, 27, 48, 0.3); }
+    .tech summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 24px; list-style: none; cursor: pointer; }
+    .tech summary::-webkit-details-marker { display: none; }
+    .tech summary .l { display: flex; align-items: center; gap: 12px; }
+    .tech summary .l svg { width: 18px; height: 18px; color: var(--electric-light); }
+    .tech summary b { display: block; font-size: 14px; font-weight: 600; color: #fff; }
+    .tech summary small { display: block; font-size: 12px; color: var(--mist-dim); }
+    .tech summary .chev { width: 18px; height: 18px; transition: transform 0.3s; }
+    .tech details[open] .chev { transform: rotate(180deg); }
+    .langs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 20px 24px; border-top: 1px solid var(--line); }
+    @media (min-width: 640px) { .langs { grid-template-columns: repeat(4, 1fr); } }
+    @media (min-width: 1024px) { .langs { grid-template-columns: repeat(7, 1fr); } }
+    .langs li { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 12px; font-size: 12px; font-weight: 600; color: #fff; }
+    .lang-icon { width: 32px; height: 32px; background: var(--mist); -webkit-mask: var(--icon) center / contain no-repeat; mask: var(--icon) center / contain no-repeat; transition: background 0.3s; }
+    .langs li:hover .lang-icon { background: var(--brand); }
+    .csharp { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; clip-path: polygon(50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%); background: var(--mist); color: var(--navy-900); font-size: 11px; font-weight: 800; transition: background 0.3s; }
+    .langs li:hover .csharp { background: #a179dc; }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    .footer { position: relative; border-top: 1px solid var(--line); background: var(--navy-950); }
+    .footer::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 1px; background: linear-gradient(90deg, transparent, var(--electric), transparent); }
+    .footer-grid { display: grid; gap: 48px; padding: 64px 0; }
+    @media (min-width: 640px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.4fr 1fr 1.2fr 1.3fr; } }
+    .footer p.about-text { margin-top: 20px; max-width: 300px; font-size: 14px; }
+    .socials { margin-top: 24px; display: flex; gap: 10px; }
+    .socials a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--line); color: var(--mist); transition: all 0.3s; }
+    .socials a:hover { translate: 0 -2px; border-color: var(--electric); background: rgba(40, 120, 255, 0.1); color: #fff; }
+    .socials svg { width: 16px; height: 16px; fill: currentColor; }
+    .footer h2 { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+    .footer-links { margin-top: 20px; display: grid; gap: 12px; font-size: 14px; }
+    .footer-links a:hover { color: var(--electric-light); }
+    .footer-contact { margin-top: 20px; display: grid; gap: 14px; font-size: 14px; font-style: normal; }
+    .footer-contact a, .footer-contact span { display: flex; align-items: center; gap: 12px; }
+    .footer-contact a:hover { color: var(--electric-light); }
+    .footer-contact svg { width: 16px; height: 16px; color: var(--electric); }
+    .footer .btn { margin-top: 24px; }
+    .footer-bottom { border-top: 1px solid var(--line); }
+    .footer-bottom .container { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 12px; padding-top: 24px; padding-bottom: 24px; font-size: 12px; color: var(--mist-dim); }
+    @media (min-width: 640px) { .footer-bottom .container { flex-direction: row; } }
+
+    /* Movimiento reducido: desactiva animaciones */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      .reveal, .word { opacity: 1 !important; transform: none !important; filter: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =========================================================
+       HEADER
+       ========================================================= -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="#inicio" class="logo" aria-label="Ñandutek — Inicio">
+        <img src="img/nandu-mark.png" alt="" />
+        <span class="logo-text"><span class="a">Ñandu</span><span class="b">tek</span></span>
+      </a>
+
+      <nav class="nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#contacto" class="btn btn-primary btn-sm">Solicitar presupuesto</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Navegación móvil">
+      <ul class="container">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#contacto" class="btn btn-primary">Solicitar presupuesto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- =========================================================
+         HERO
+         ========================================================= -->
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="grid-bg"></div>
+      <canvas id="particles" aria-hidden="true"></canvas>
+      <div class="glow" style="top:-160px;left:50%;width:900px;height:520px;transform:translateX(-50%);background:rgba(40,120,255,.1)"></div>
+
+      <div class="container hero-grid">
+        <!-- Texto -->
+        <div class="hero-text">
+          <p class="badge"><span class="dot"></span>Desarrollamos <span class="rotating" id="rotating">sitios web</span></p>
+          <h1 id="hero-title">
+            <span class="line" data-blur data-delay="0.1">TRANSFORMAMOS IDEAS</span>
+            <span class="line text-shine-words" data-blur data-delay="0.35">EN SOLUCIONES DIGITALES</span>
+          </h1>
+          <p class="hero-desc">
+            En <strong>Ñandutek</strong> desarrollamos experiencias digitales, software a medida y soluciones
+            tecnológicas que ayudan a las empresas a innovar, crecer y optimizar sus procesos.
+          </p>
+          <div class="hero-buttons">
+            <a href="#servicios" class="btn btn-primary">Explorar nuestros servicios <i data-lucide="arrow-right" class="arrow"></i></a>
+            <a href="#contacto" class="btn btn-outline"><i data-lucide="message-square"></i> Hablemos de tu proyecto</a>
+          </div>
+        </div>
+
+        <!-- Ilustración -->
+        <div class="illus" id="illus" role="img" aria-label="Computadora portátil con un editor de código, rodeada de interfaces digitales flotantes">
+          <div class="illus-inner" id="illusInner">
+            <div class="illus-glow"></div>
+            <svg class="illus-rings" viewBox="0 0 560 440" aria-hidden="true">
+              <g class="spin"><circle cx="280" cy="200" r="205" fill="none" stroke="#2878ff" stroke-opacity=".18" stroke-dasharray="2 8" /></g>
+              <circle cx="280" cy="200" r="165" fill="none" stroke="#2878ff" stroke-opacity=".12" />
+              <path d="M40 110 H110 L130 90" stroke="#2878ff" stroke-opacity=".4" fill="none" />
+              <path d="M520 300 H460 L440 320" stroke="#2878ff" stroke-opacity=".4" fill="none" />
+              <circle cx="40" cy="110" r="3" fill="#2878ff" />
+              <circle cx="520" cy="300" r="3" fill="#38c6ff" />
+            </svg>
+
+            <!-- Laptop con editor de código -->
+            <svg class="laptop" viewBox="0 0 560 380" aria-hidden="true">
+              <defs>
+                <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5a9bff" stop-opacity=".9" /><stop offset=".5" stop-color="#2878ff" stop-opacity=".25" /><stop offset="1" stop-color="#38c6ff" stop-opacity=".8" /></linearGradient>
+                <linearGradient id="base" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#24406b" /><stop offset="1" stop-color="#0d1b30" /></linearGradient>
+                <radialGradient id="floor" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#2878ff" stop-opacity=".55" /><stop offset="1" stop-color="#2878ff" stop-opacity="0" /></radialGradient>
+              </defs>
+              <ellipse cx="280" cy="352" rx="250" ry="26" fill="url(#floor)" />
+              <rect x="70" y="20" width="420" height="276" rx="14" fill="#0a1628" stroke="url(#edge)" stroke-width="1.5" />
+              <rect x="82" y="32" width="396" height="252" rx="6" fill="#060e1c" />
+              <rect x="82" y="32" width="396" height="22" rx="6" fill="#0d1b30" />
+              <circle cx="96" cy="43" r="3.5" fill="#ff5f57" /><circle cx="108" cy="43" r="3.5" fill="#febc2e" /><circle cx="120" cy="43" r="3.5" fill="#28c840" />
+              <rect x="180" y="37" width="78" height="12" rx="3" fill="#13243f" />
+              <g font-family="ui-monospace, monospace" font-size="7.5">
+                <text x="188" y="46" fill="#9fb0c8">project.ts</text>
+                <text x="270" y="46" fill="#6d7f99">api.ts</text>
+              </g>
+              <rect x="82" y="54" width="86" height="230" fill="#08132a" />
+              <rect x="82" y="103" width="86" height="10" fill="#2878ff" opacity=".12" />
+              <g font-family="ui-monospace, monospace" font-size="7.5" fill="#6d7f99">
+                <text x="90" y="68" fill="#9fb0c8">▾ src</text>
+                <text x="98" y="82">app</text><text x="98" y="96">core</text>
+                <text x="98" y="110" fill="#5a9bff">project.ts</text>
+                <text x="98" y="124">api.ts</text><text x="98" y="138">db.sql</text>
+                <text x="90" y="152">▸ tests</text>
+              </g>
+              <rect x="176" y="108" width="302" height="13" fill="#2878ff" opacity=".07" />
+              <g font-family="ui-monospace, monospace" font-size="9.2" xml:space="preserve">
+                <g fill="#34496b" font-size="8">
+                  <text x="180" y="74">1</text><text x="180" y="88.5">2</text><text x="180" y="103">3</text><text x="180" y="117.5">4</text><text x="180" y="132">5</text><text x="180" y="146.5">6</text><text x="180" y="161">7</text><text x="180" y="175.5">8</text><text x="180" y="190">9</text><text x="176" y="204.5">10</text><text x="176" y="219">11</text><text x="176" y="233.5">12</text><text x="176" y="248">13</text>
+                </g>
+                <text x="198" y="74"><tspan fill="#c792ea">import</tspan><tspan fill="#e6edf7"> { Solution } </tspan><tspan fill="#c792ea">from</tspan><tspan fill="#7fdbca"> '@nandutek/core'</tspan></text>
+                <text x="198" y="103"><tspan fill="#c792ea">const</tspan><tspan fill="#e6edf7"> project </tspan><tspan fill="#6d7f99">= </tspan><tspan fill="#c792ea">new</tspan><tspan fill="#5a9bff"> Solution</tspan><tspan fill="#6d7f99">({</tspan></text>
+                <text x="198" y="117.5"><tspan fill="#9fb0c8">  client</tspan><tspan fill="#6d7f99">: </tspan><tspan fill="#7fdbca">'tu-empresa'</tspan><tspan fill="#6d7f99">,</tspan></text>
+                <text x="198" y="132"><tspan fill="#9fb0c8">  stack</tspan><tspan fill="#6d7f99">: [</tspan><tspan fill="#7fdbca">'PHP'</tspan><tspan fill="#6d7f99">, </tspan><tspan fill="#7fdbca">'Python'</tspan><tspan fill="#6d7f99">, </tspan><tspan fill="#7fdbca">'C#'</tspan><tspan fill="#6d7f99">],</tspan></text>
+                <text x="198" y="146.5"><tspan fill="#9fb0c8">  uptime</tspan><tspan fill="#6d7f99">: </tspan><tspan fill="#f78c6c">99.9</tspan><tspan fill="#6d7f99">,</tspan></text>
+                <text x="198" y="161"><tspan fill="#9fb0c8">  scalable</tspan><tspan fill="#6d7f99">: </tspan><tspan fill="#c792ea">true</tspan><tspan fill="#6d7f99">,</tspan></text>
+                <text x="198" y="175.5" fill="#6d7f99">})</text>
+                <text x="198" y="204.5"><tspan fill="#c792ea">export async function</tspan><tspan fill="#5a9bff"> launch</tspan><tspan fill="#6d7f99">() {</tspan></text>
+                <text x="198" y="219"><tspan fill="#c792ea">  await</tspan><tspan fill="#e6edf7"> project.</tspan><tspan fill="#5a9bff">build</tspan><tspan fill="#6d7f99">()</tspan></text>
+                <text x="198" y="233.5"><tspan fill="#c792ea">  return</tspan><tspan fill="#e6edf7"> project.</tspan><tspan fill="#5a9bff">deploy</tspan><tspan fill="#6d7f99">()</tspan></text>
+                <text x="198" y="248" fill="#6d7f99">}</text>
+              </g>
+              <rect x="336" y="225.5" width="5" height="10" fill="#5a9bff" class="blink" />
+              <rect x="168" y="262" width="310" height="22" fill="#0a1628" />
+              <text x="178" y="276" font-size="7.5" font-family="ui-monospace, monospace" fill="#28c840">✓ build completed<tspan fill="#6d7f99"> · deploy en producción · 1.2s</tspan></text>
+              <path d="M20 298 H540 L520 322 Q515 328 503 328 H57 Q45 328 40 322 Z" fill="url(#base)" stroke="#2878ff" stroke-opacity=".35" />
+              <rect x="238" y="298" width="84" height="7" rx="3.5" fill="#081426" />
+              <rect x="20" y="297" width="520" height="2" fill="#5a9bff" opacity=".6" />
+            </svg>
+
+            <!-- Tarjetas flotantes -->
+            <div class="float-card fc-metrics float">
+              <div class="fc-row"><span>Rendimiento</span><b style="color:#34d399">▲ 98</b></div>
+              <div class="fc-bars">
+                <span style="height:40%;opacity:.45"></span><span style="height:55%;opacity:.53"></span><span style="height:35%;opacity:.61"></span><span style="height:70%;opacity:.69"></span><span style="height:60%;opacity:.77"></span><span style="height:85%;opacity:.85"></span><span style="height:95%;opacity:.93"></span>
+              </div>
+            </div>
+            <div class="float-card fc-api float-slow">
+              <span class="icon-box"><i data-lucide="cloud"></i></span>
+              <span style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:10px;color:#fff">API REST</b><span style="font-size:9px;color:#34d399">● online</span></span>
+            </div>
+            <div class="phone float-slow" style="animation-delay:-3s">
+              <div class="phone-screen">
+                <div class="ph-bar"></div>
+                <div class="ph-hero"><i></i><i></i></div>
+                <div class="ph-grid"><span></span><span></span><span></span><span></span></div>
+                <div class="ph-btn"></div>
+              </div>
+            </div>
+            <div class="float-card fc-deploy float" style="animation-delay:-2s">
+              <span class="ok"><i data-lucide="check"></i></span> Deploy exitoso
+            </div>
+            <div class="chip float-slow" style="top:40%;left:-2%;animation-delay:-4s"><i data-lucide="database"></i> SQL</div>
+            <div class="chip float" style="top:34%;right:-1%;animation-delay:-1s"><i data-lucide="lock"></i> SSL</div>
+            <div class="chip chip-code float-slow" style="animation-delay:-5s">&lt;/&gt;</div>
+          </div>
+        </div>
+
+        <!-- Servicios destacados -->
+        <nav aria-label="Servicios destacados">
+          <ul class="hero-services">
+            <li><a href="#servicios"><span class="icon-box"><i data-lucide="code-xml"></i></span><span class="t">Desarrollo web</span><i data-lucide="chevron-right" class="chev"></i></a></li>
+            <li><a href="#servicios"><span class="icon-box"><i data-lucide="blocks"></i></span><span class="t">Software a medida</span><i data-lucide="chevron-right" class="chev"></i></a></li>
+            <li><a href="#servicios"><span class="icon-box"><i data-lucide="cpu"></i></span><span class="t">Soluciones informáticas</span><i data-lucide="chevron-right" class="chev"></i></a></li>
+            <li><a href="#servicios"><span class="icon-box"><i data-lucide="workflow"></i></span><span class="t">Automatización de procesos</span><i data-lucide="chevron-right" class="chev"></i></a></li>
+            <li><a href="#servicios"><span class="icon-box"><i data-lucide="network"></i></span><span class="t">Integración de sistemas</span><i data-lucide="chevron-right" class="chev"></i></a></li>
+            <li><a href="#servicios"><span class="icon-box"><i data-lucide="lightbulb"></i></span><span class="t">Consultoría tecnológica</span><i data-lucide="chevron-right" class="chev"></i></a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Cinta de servicios en movimiento -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="grp"><span>Desarrollo web</span><span>Software a medida</span><span>Soluciones informáticas</span><span>Automatización de procesos</span><span>Integración de sistemas</span><span>Consultoría tecnológica</span></div>
+        <div class="grp"><span>Desarrollo web</span><span>Software a medida</span><span>Soluciones informáticas</span><span>Automatización de procesos</span><span>Integración de sistemas</span><span>Consultoría tecnológica</span></div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         NOSOTROS
+         ========================================================= -->
+    <section class="section section-alt about" id="nosotros" aria-labelledby="about-title">
+      <div class="container two-col">
+        <div class="reveal">
+          <p class="eyebrow">Sobre nosotros</p>
+          <h2 id="about-title" style="font-size:clamp(30px,4vw,38px);font-weight:700">Tecnología hecha a la medida <span class="text-gradient">de tu negocio.</span></h2>
+          <p class="lead">
+            <strong>Ñandutek</strong> es una empresa de tecnología dedicada a diseñar, desarrollar e implementar
+            soluciones digitales para organizaciones que buscan dar el siguiente paso. Combinamos visión estratégica,
+            diseño y desarrollo de software para convertir procesos complejos en herramientas simples, eficientes y escalables.
+          </p>
+          <p>
+            Trabajamos cerca de cada cliente, entendiendo su operación antes de escribir una sola línea de código.
+            Así construimos productos que resuelven problemas reales y generan valor medible desde el primer día.
+          </p>
+          <ul class="checks">
+            <li><i data-lucide="circle-check"></i>Equipo multidisciplinario de desarrollo, diseño e infraestructura</li>
+            <li><i data-lucide="circle-check"></i>Metodología ágil con entregas parciales y visibilidad total</li>
+            <li><i data-lucide="circle-check"></i>Código limpio, documentado y preparado para crecer</li>
+          </ul>
+          <a href="#proceso" class="btn btn-outline">Conocé más sobre nosotros <i data-lucide="arrow-right" class="arrow"></i></a>
+        </div>
+
+        <div class="reveal" style="transition-delay:.15s">
+          <div class="workspace">
+            <!-- Espacio de trabajo: monitor con código, laptop, teclado y escritorio -->
+            <svg viewBox="0 0 520 380" style="display:block;width:100%" role="img" aria-label="Espacio de trabajo con monitor mostrando código">
+              <defs>
+                <linearGradient id="wsbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f2240" /><stop offset="1" stop-color="#081426" /></linearGradient>
+                <radialGradient id="wsglow" cx=".5" cy=".4" r=".6"><stop offset="0" stop-color="#2878ff" stop-opacity=".35" /><stop offset="1" stop-color="#2878ff" stop-opacity="0" /></radialGradient>
+                <linearGradient id="desk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b3053" /><stop offset="1" stop-color="#0d1b30" /></linearGradient>
+                <pattern id="wsgrid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#2878ff" stroke-opacity=".07" /></pattern>
+              </defs>
+              <rect width="520" height="380" fill="url(#wsbg)" />
+              <rect width="520" height="270" fill="url(#wsgrid)" />
+              <rect width="520" height="380" fill="url(#wsglow)" />
+              <line x1="430" y1="0" x2="430" y2="46" stroke="#34496b" stroke-width="2" />
+              <path d="M410 46 H450 L442 62 H418 Z" fill="#1b3053" />
+              <ellipse cx="430" cy="64" rx="14" ry="3" fill="#38c6ff" opacity=".8" />
+              <path d="M416 64 L380 200 H480 L444 64 Z" fill="#38c6ff" opacity=".05" />
+              <rect x="120" y="40" width="280" height="176" rx="10" fill="#0a1628" stroke="#2878ff" stroke-opacity=".5" />
+              <rect x="130" y="50" width="260" height="156" rx="4" fill="#060e1c" />
+              <rect x="130" y="50" width="260" height="14" rx="4" fill="#0d1b30" />
+              <circle cx="139" cy="57" r="2.5" fill="#ff5f57" /><circle cx="148" cy="57" r="2.5" fill="#febc2e" /><circle cx="157" cy="57" r="2.5" fill="#28c840" />
+              <g opacity=".85">
+                <rect x="150" y="74" width="43" height="5" rx="2.5" fill="#c792ea" /><rect x="199" y="74" width="65" height="5" rx="2.5" fill="#5a9bff" />
+                <rect x="166" y="86.5" width="86" height="5" rx="2.5" fill="#7fdbca" />
+                <rect x="166" y="99" width="50" height="5" rx="2.5" fill="#9fb0c8" /><rect x="222" y="99" width="43" height="5" rx="2.5" fill="#f78c6c" />
+                <rect x="182" y="111.5" width="100" height="5" rx="2.5" fill="#5a9bff" />
+                <rect x="182" y="124" width="36" height="5" rx="2.5" fill="#9fb0c8" /><rect x="224" y="124" width="58" height="5" rx="2.5" fill="#7fdbca" />
+                <rect x="166" y="136.5" width="29" height="5" rx="2.5" fill="#c792ea" />
+                <rect x="150" y="149" width="22" height="5" rx="2.5" fill="#6d7f99" />
+                <rect x="150" y="161.5" width="72" height="5" rx="2.5" fill="#5a9bff" /><rect x="228" y="161.5" width="43" height="5" rx="2.5" fill="#7fdbca" />
+                <rect x="166" y="174" width="108" height="5" rx="2.5" fill="#9fb0c8" />
+                <rect x="166" y="186.5" width="65" height="5" rx="2.5" fill="#c792ea" /><rect x="237" y="186.5" width="36" height="5" rx="2.5" fill="#5a9bff" />
+              </g>
+              <path d="M240 216 H280 L288 246 H232 Z" fill="#13243f" />
+              <rect x="208" y="244" width="104" height="8" rx="4" fill="#1b3053" />
+              <rect x="0" y="252" width="520" height="128" fill="url(#desk)" />
+              <rect x="0" y="252" width="520" height="2" fill="#5a9bff" opacity=".5" />
+              <rect x="170" y="290" width="180" height="40" rx="6" fill="#13243f" stroke="#2878ff" stroke-opacity=".3" />
+              <g fill="#1b3053">
+                <rect x="178" y="296" width="164" height="7" rx="1.5" /><rect x="178" y="306" width="164" height="7" rx="1.5" /><rect x="178" y="316" width="164" height="7" rx="1.5" />
+              </g>
+              <rect x="370" y="298" width="22" height="32" rx="11" fill="#13243f" stroke="#2878ff" stroke-opacity=".3" />
+              <path d="M22 196 L96 188 L100 254 L26 262 Z" fill="#0a1628" stroke="#2878ff" stroke-opacity=".5" />
+              <path d="M30 202 L90 196 L93 246 L33 252 Z" fill="#081a36" />
+              <path d="M10 266 L100 256 L130 268 L40 280 Z" fill="#1b3053" />
+              <rect x="430" y="270" width="30" height="36" rx="5" fill="#1b3053" stroke="#2878ff" stroke-opacity=".4" />
+              <path d="M460 278 q12 0 12 10 q0 10 -12 10" stroke="#2878ff" stroke-opacity=".4" fill="none" stroke-width="3" />
+              <rect x="470" y="220" width="30" height="34" rx="4" fill="#13243f" />
+              <path d="M485 222 C470 200 462 190 470 170 C480 185 486 200 485 222 Z" fill="#1f6f5c" />
+              <path d="M485 222 C496 198 506 190 510 176 C502 200 496 210 485 222 Z" fill="#2a8f76" />
+            </svg>
+          </div>
+          <ul class="values">
+            <li class="card card-hover"><span class="icon-box"><i data-lucide="sparkles"></i></span>Innovación</li>
+            <li class="card card-hover"><span class="icon-box"><i data-lucide="handshake"></i></span>Compromiso</li>
+            <li class="card card-hover"><span class="icon-box"><i data-lucide="award"></i></span>Calidad</li>
+            <li class="card card-hover"><span class="icon-box"><i data-lucide="trending-up"></i></span>Escalabilidad</li>
+            <li class="card card-hover"><span class="icon-box"><i data-lucide="heart-handshake"></i></span>Atención personalizada</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SERVICIOS
+         ========================================================= -->
+    <section class="section" id="servicios" aria-labelledby="services-title">
+      <div class="glow" style="top:33%;left:0;width:384px;height:384px;background:rgba(40,120,255,.08)"></div>
+      <div class="container" style="position:relative">
+        <div class="heading center reveal">
+          <p class="eyebrow center">Nuestros servicios</p>
+          <h2 id="services-title">Soluciones digitales <span class="text-gradient">de punta a punta</span></h2>
+          <p>Acompañamos a tu empresa en cada etapa de su transformación digital, desde la idea inicial hasta la operación diaria.</p>
+        </div>
+
+        <ul class="services-grid">
+          <li class="card card-hover service reveal">
+            <span class="num">01</span>
+            <span class="icon-box"><i data-lucide="code-xml"></i></span>
+            <h3>Desarrollo web</h3>
+            <p>Sitios corporativos, landing pages, tiendas online y aplicaciones web rápidas, seguras y optimizadas para buscadores.</p>
+            <a href="#contacto" class="more" data-service="Desarrollo web">Solicitar información <i data-lucide="arrow-up-right"></i></a>
+          </li>
+          <li class="card card-hover service reveal" style="transition-delay:.08s">
+            <span class="num">02</span>
+            <span class="icon-box"><i data-lucide="blocks"></i></span>
+            <h3>Software a medida</h3>
+            <p>Sistemas diseñados a partir de tus procesos reales: gestión, turnos, stock, facturación y plataformas internas.</p>
+            <a href="#contacto" class="more" data-service="Software a medida">Solicitar información <i data-lucide="arrow-up-right"></i></a>
+          </li>
+          <li class="card card-hover service reveal" style="transition-delay:.16s">
+            <span class="num">03</span>
+            <span class="icon-box"><i data-lucide="cpu"></i></span>
+            <h3>Soluciones informáticas</h3>
+            <p>Infraestructura, servidores, bases de datos y herramientas que mantienen tu operación estable y segura.</p>
+            <a href="#contacto" class="more" data-service="Soluciones informáticas">Solicitar información <i data-lucide="arrow-up-right"></i></a>
+          </li>
+          <li class="card card-hover service reveal">
+            <span class="num">04</span>
+            <span class="icon-box"><i data-lucide="workflow"></i></span>
+            <h3>Automatización de procesos</h3>
+            <p>Eliminamos tareas repetitivas con flujos automáticos, bots e integraciones que ahorran tiempo y reducen errores.</p>
+            <a href="#contacto" class="more" data-service="Automatización de procesos">Solicitar información <i data-lucide="arrow-up-right"></i></a>
+          </li>
+          <li class="card card-hover service reveal" style="transition-delay:.08s">
+            <span class="num">05</span>
+            <span class="icon-box"><i data-lucide="network"></i></span>
+            <h3>Integración de sistemas</h3>
+            <p>Conectamos ERPs, CRMs, pasarelas de pago y APIs para que tu información fluya entre todas tus herramientas.</p>
+            <a href="#contacto" class="more" data-service="Integración de sistemas">Solicitar información <i data-lucide="arrow-up-right"></i></a>
+          </li>
+          <li class="card card-hover service reveal" style="transition-delay:.16s">
+            <span class="num">06</span>
+            <span class="icon-box"><i data-lucide="lightbulb"></i></span>
+            <h3>Consultoría tecnológica</h3>
+            <p>Analizamos tu situación actual y definimos una hoja de ruta tecnológica clara, priorizada y medible.</p>
+            <a href="#contacto" class="more" data-service="Consultoría tecnológica">Solicitar información <i data-lucide="arrow-up-right"></i></a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PROCESO
+         ========================================================= -->
+    <section class="section section-alt" id="proceso" aria-labelledby="process-title">
+      <div class="container">
+        <div class="heading center reveal">
+          <p class="eyebrow center">Nuestro proceso</p>
+          <h2 id="process-title">Un camino claro <span class="text-gradient">de la idea al resultado</span></h2>
+          <p>Trabajamos con una metodología ordenada y transparente para que sepas en todo momento en qué etapa está tu proyecto.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-line h"></div>
+          <div class="timeline-line v"></div>
+          <ol class="steps">
+            <li class="step reveal">
+              <div class="step-icon"><span class="circle"><i data-lucide="search"></i></span><span class="n">01</span></div>
+              <div><h3>Descubrimiento y análisis</h3><p>Entendemos tu negocio, tus objetivos y los problemas a resolver.</p></div>
+            </li>
+            <li class="step reveal" style="transition-delay:.1s">
+              <div class="step-icon"><span class="circle"><i data-lucide="pen-tool"></i></span><span class="n">02</span></div>
+              <div><h3>Planificación y diseño</h3><p>Definimos alcance, arquitectura, prototipos y cronograma.</p></div>
+            </li>
+            <li class="step reveal" style="transition-delay:.2s">
+              <div class="step-icon"><span class="circle"><i data-lucide="code-xml"></i></span><span class="n">03</span></div>
+              <div><h3>Desarrollo e implementación</h3><p>Construimos por etapas, con entregas parciales y visibilidad total.</p></div>
+            </li>
+            <li class="step reveal" style="transition-delay:.3s">
+              <div class="step-icon"><span class="circle"><i data-lucide="test-tube"></i></span><span class="n">04</span></div>
+              <div><h3>Pruebas y optimización</h3><p>Validamos calidad, rendimiento, seguridad y experiencia de uso.</p></div>
+            </li>
+            <li class="step reveal" style="transition-delay:.4s">
+              <div class="step-icon"><span class="circle"><i data-lucide="rocket"></i></span><span class="n">05</span></div>
+              <div><h3>Entrega y acompañamiento</h3><p>Publicamos, capacitamos y seguimos a tu lado con soporte continuo.</p></div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         POR QUÉ ELEGIRNOS
+         ========================================================= -->
+    <section class="section why" id="por-que-elegirnos" aria-labelledby="why-title">
+      <div class="container two-col">
+        <div>
+          <div class="heading reveal">
+            <p class="eyebrow">Por qué elegirnos</p>
+            <h2 id="why-title">Un socio tecnológico <span class="text-gradient">comprometido con tu crecimiento</span></h2>
+            <p>Combinamos experiencia técnica, cercanía y una visión de negocio para construir soluciones que realmente funcionan.</p>
+          </div>
+          <ul class="advantages">
+            <li class="card card-hover advantage reveal"><span class="icon-box"><i data-lucide="target"></i></span><div><h3>Soluciones adaptadas a cada negocio</h3><p>Nada de plantillas: cada proyecto parte de tus necesidades reales.</p></div></li>
+            <li class="card card-hover advantage reveal" style="transition-delay:.06s"><span class="icon-box"><i data-lucide="layers"></i></span><div><h3>Tecnologías modernas</h3><p>Stack actual, mantenido y respaldado por grandes comunidades.</p></div></li>
+            <li class="card card-hover advantage reveal" style="transition-delay:.12s"><span class="icon-box"><i data-lucide="users"></i></span><div><h3>Diseño centrado en el usuario</h3><p>Interfaces claras que tus clientes y equipos disfrutan usar.</p></div></li>
+            <li class="card card-hover advantage reveal" style="transition-delay:.18s"><span class="icon-box"><i data-lucide="gauge"></i></span><div><h3>Arquitecturas escalables</h3><p>Bases sólidas para crecer sin reescribir todo desde cero.</p></div></li>
+            <li class="card card-hover advantage reveal" style="transition-delay:.24s"><span class="icon-box"><i data-lucide="message-circle"></i></span><div><h3>Comunicación directa</h3><p>Hablás con quienes construyen tu proyecto, sin intermediarios.</p></div></li>
+            <li class="card card-hover advantage reveal" style="transition-delay:.3s"><span class="icon-box"><i data-lucide="shield-check"></i></span><div><h3>Acompañamiento tecnológico</h3><p>Soporte, mantenimiento y mejora continua después de la entrega.</p></div></li>
+          </ul>
+        </div>
+
+        <div class="why-illus reveal" role="img" aria-label="Paneles de código e interfaces flotantes alrededor del ñandú de Ñandutek">
+          <div class="illus-glow" style="inset:15%"></div>
+          <svg class="orbits" viewBox="0 0 520 520" aria-hidden="true">
+            <circle cx="260" cy="260" r="120" fill="none" stroke="#2878ff" stroke-opacity=".35" />
+            <circle cx="260" cy="260" r="190" fill="none" stroke="#2878ff" stroke-opacity=".15" stroke-dasharray="3 7" />
+            <g style="transform-origin:260px 260px;animation:spin 40s linear infinite"><circle cx="380" cy="260" r="5" fill="#38c6ff" /><circle cx="140" cy="260" r="3" fill="#2878ff" /></g>
+            <path d="M260 260 L120 120 M260 260 L410 150 M260 260 L400 400 M260 260 L110 390" stroke="#2878ff" stroke-opacity=".25" stroke-dasharray="4 6" />
+          </svg>
+          <div class="why-center"><img src="img/nandu-mark.png" alt="" /></div>
+
+          <div class="panel panel-code float">
+            <div class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div>
+            <div><span style="color:#c792ea">const</span> <span style="color:#fff">app</span> = <span style="color:#5a9bff">scale</span>({</div>
+            <div style="padding-left:12px">users: <span style="color:#f78c6c">10_000</span>,</div>
+            <div style="padding-left:12px">secure: <span style="color:#c792ea">true</span>,</div>
+            <div>})</div>
+          </div>
+          <div class="panel panel-perf float-slow" style="animation-delay:-2s">
+            <div class="panel-title"><i data-lucide="activity"></i> Rendimiento</div>
+            <svg viewBox="0 0 120 40" style="margin-top:8px;width:100%" aria-hidden="true">
+              <path d="M0 32 L15 28 L30 30 L45 18 L60 22 L75 10 L90 14 L105 4 L120 6 V40 H0 Z" fill="#2878ff" opacity=".15" />
+              <path d="M0 32 L15 28 L30 30 L45 18 L60 22 L75 10 L90 14 L105 4 L120 6" fill="none" stroke="#2878ff" stroke-width="2" />
+            </svg>
+          </div>
+          <div class="panel panel-git float-slow" style="animation-delay:-4s"><i data-lucide="git-branch"></i> main · v2.4.0</div>
+          <div class="panel panel-ux float" style="animation-delay:-1s">
+            <div class="panel-title"><i data-lucide="users"></i> Experiencia de usuario</div>
+            <div class="bar" style="margin-top:8px"><i style="width:92%"></i></div>
+            <div class="bar"><i style="width:78%"></i></div>
+            <div class="bar"><i style="width:64%"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PROYECTOS (demostraciones conceptuales)
+         ========================================================= -->
+    <section class="section section-alt" id="proyectos" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="heading center reveal">
+          <p class="eyebrow center">Proyectos</p>
+          <h2 id="projects-title">Lo que podemos <span class="text-gradient">construir para vos</span></h2>
+          <p>Ejemplos de las soluciones que desarrollamos. Cada proyecto se diseña y adapta a las necesidades específicas de cada empresa.</p>
+        </div>
+        <p class="notice reveal"><i data-lucide="info"></i><span>Los siguientes proyectos son <strong>demostraciones conceptuales</strong> creadas para ilustrar nuestras capacidades. No corresponden a trabajos realizados para clientes.</span></p>
+
+        <ul class="projects">
+          <!-- Tienda online -->
+          <li class="card card-hover project reveal">
+            <div class="project-img">
+              <span class="tag">Demo conceptual</span>
+              <div class="browser">
+                <div class="browser-bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>demo-tienda.nandutek.dev</span></div>
+                <div class="browser-body">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div class="sk" style="width:30%;background:rgba(255,255,255,.7)"></div><span style="padding:2px 6px;border-radius:4px;background:#2878ff;color:#fff;font-size:8px;font-weight:700">🛒 3</span></div>
+                  <div class="mini-grid">
+                    <div class="mini-card"><div class="img" style="background:linear-gradient(135deg,rgba(40,120,255,.6),rgba(56,198,255,.3))"></div><div class="sk" style="width:80%"></div><div style="margin-top:6px;font-size:8px;font-weight:700;color:#fff">$24.990</div></div>
+                    <div class="mini-card"><div class="img" style="background:linear-gradient(135deg,rgba(139,92,246,.5),rgba(40,120,255,.3))"></div><div class="sk" style="width:80%"></div><div style="margin-top:6px;font-size:8px;font-weight:700;color:#fff">$36.990</div></div>
+                    <div class="mini-card"><div class="img" style="background:linear-gradient(135deg,rgba(56,198,255,.5),rgba(52,211,153,.3))"></div><div class="sk" style="width:80%"></div><div style="margin-top:6px;font-size:8px;font-weight:700;color:#fff">$48.990</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="title"><span class="icon-box"><i data-lucide="shopping-cart"></i></span><h3>Tienda online</h3></div>
+              <p>E-commerce con catálogo, carrito, pagos online y panel de administración de productos y pedidos.</p>
+              <ul class="tags"><li>PHP</li><li>JavaScript</li><li>HTML</li><li>CSS</li></ul>
+            </div>
+          </li>
+
+          <!-- Sistema de gestión -->
+          <li class="card card-hover project reveal" style="transition-delay:.1s">
+            <div class="project-img">
+              <span class="tag">Demo conceptual</span>
+              <div class="browser">
+                <div class="browser-bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>demo-gestion.nandutek.dev</span></div>
+                <div class="browser-body" style="display:flex;gap:8px">
+                  <div style="width:20%;padding:6px;border-radius:4px;background:var(--navy-800);display:grid;gap:6px;align-content:start"><div class="sk" style="background:#2878ff"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div></div>
+                  <div style="flex:1;display:grid;gap:8px;align-content:start">
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+                      <div class="mini-card"><div style="font-size:7px;color:var(--mist-dim)">Clientes</div><div style="font-size:10px;font-weight:700;color:#fff">1.096</div></div>
+                      <div class="mini-card"><div style="font-size:7px;color:var(--mist-dim)">Stock</div><div style="font-size:10px;font-weight:700;color:#fff">685</div></div>
+                      <div class="mini-card"><div style="font-size:7px;color:var(--mist-dim)">Ventas</div><div style="font-size:10px;font-weight:700;color:#fff">822</div></div>
+                    </div>
+                    <div class="mini-card" style="display:grid;gap:6px">
+                      <div class="sk" style="width:70%"></div><div class="sk" style="width:55%"></div><div class="sk" style="width:62%"></div><div class="sk" style="width:45%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="title"><span class="icon-box"><i data-lucide="building-2"></i></span><h3>Sistema de gestión empresarial</h3></div>
+              <p>Plataforma para clientes, stock, facturación y reportes con roles y permisos por usuario.</p>
+              <ul class="tags"><li>C#</li><li>JavaScript</li></ul>
+            </div>
+          </li>
+
+          <!-- Sitio corporativo -->
+          <li class="card card-hover project reveal">
+            <div class="project-img">
+              <span class="tag">Demo conceptual</span>
+              <div class="browser">
+                <div class="browser-bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>demo-corporativo.nandutek.dev</span></div>
+                <div class="browser-body">
+                  <div style="display:flex;justify-content:space-between;margin-bottom:8px"><div class="sk" style="width:32px;height:8px;background:#2878ff"></div><div style="display:flex;gap:6px"><div class="sk" style="width:14px"></div><div class="sk" style="width:14px"></div><div class="sk" style="width:14px"></div></div></div>
+                  <div style="padding:12px;border-radius:6px;background:linear-gradient(135deg,rgba(40,120,255,.4),var(--navy-800),var(--navy-900))">
+                    <div class="sk" style="width:66%;height:8px;background:rgba(255,255,255,.85)"></div>
+                    <div class="sk" style="width:50%;height:8px;margin-top:6px;background:rgba(255,255,255,.6)"></div>
+                    <div style="width:48px;height:12px;margin-top:10px;border-radius:4px;background:#2878ff"></div>
+                  </div>
+                  <div class="mini-grid" style="margin-top:8px"><div class="mini-card"><div class="sk"></div></div><div class="mini-card"><div class="sk"></div></div><div class="mini-card"><div class="sk"></div></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="title"><span class="icon-box"><i data-lucide="globe"></i></span><h3>Sitio web corporativo</h3></div>
+              <p>Sitio institucional rápido, optimizado para SEO, con blog administrable y formularios de contacto.</p>
+              <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li></ul>
+            </div>
+          </li>
+
+          <!-- Dashboard -->
+          <li class="card card-hover project reveal" style="transition-delay:.1s">
+            <div class="project-img">
+              <span class="tag">Demo conceptual</span>
+              <div class="browser">
+                <div class="browser-bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>demo-dashboard.nandutek.dev</span></div>
+                <div class="browser-body" style="display:grid;grid-template-columns:2fr 1fr;gap:8px">
+                  <div class="mini-card"><div style="font-size:7px;color:var(--mist-dim)">Ingresos mensuales</div>
+                    <svg viewBox="0 0 120 50" style="width:100%" aria-hidden="true"><path d="M0 42 C15 38 20 30 35 32 S55 18 70 20 S95 8 120 6 V50 H0 Z" fill="#2878ff" opacity=".2" /><path d="M0 42 C15 38 20 30 35 32 S55 18 70 20 S95 8 120 6" fill="none" stroke="#38c6ff" stroke-width="2" /></svg>
+                  </div>
+                  <div class="mini-card" style="display:flex;flex-direction:column;align-items:center;justify-content:center">
+                    <svg viewBox="0 0 36 36" style="width:70%" aria-hidden="true"><circle cx="18" cy="18" r="14" fill="none" stroke="#1b3053" stroke-width="5" /><circle cx="18" cy="18" r="14" fill="none" stroke="#2878ff" stroke-width="5" stroke-dasharray="62 88" transform="rotate(-90 18 18)" /></svg>
+                    <span style="font-size:9px;font-weight:700;color:#fff">72%</span>
+                  </div>
+                  <div class="mini-card" style="grid-column:span 2;display:flex;align-items:flex-end;gap:3px;height:40px">
+                    <span style="flex:1;height:30%;background:#2878ff;border-radius:2px"></span><span style="flex:1;height:50%;background:#2878ff;border-radius:2px"></span><span style="flex:1;height:40%;background:#2878ff;border-radius:2px"></span><span style="flex:1;height:70%;background:#2878ff;border-radius:2px"></span><span style="flex:1;height:55%;background:#2878ff;border-radius:2px"></span><span style="flex:1;height:80%;background:#2878ff;border-radius:2px"></span><span style="flex:1;height:65%;background:#2878ff;border-radius:2px"></span><span style="flex:1;height:90%;background:#2878ff;border-radius:2px"></span><span style="flex:1;height:75%;background:#2878ff;border-radius:2px"></span><span style="flex:1;height:95%;background:#2878ff;border-radius:2px"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="title"><span class="icon-box"><i data-lucide="chart-column"></i></span><h3>Dashboard de datos</h3></div>
+              <p>Tablero de indicadores en tiempo real que integra múltiples fuentes de datos del negocio.</p>
+              <ul class="tags"><li>Python</li><li>JavaScript</li></ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PREGUNTAS FRECUENTES
+         ========================================================= -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid">
+        <div class="heading reveal">
+          <p class="eyebrow">Preguntas frecuentes</p>
+          <h2 id="faq-title">Resolvemos <span class="text-gradient">tus dudas</span></h2>
+          <p>Si no encontrás la respuesta que buscás, escribinos y te respondemos a la brevedad.</p>
+        </div>
+        <div class="faq reveal" id="faqList">
+          <details open>
+            <summary>¿Qué tipos de páginas web desarrollan? <span class="plus"><i data-lucide="plus"></i></span></summary>
+            <p>Desarrollamos sitios corporativos, landing pages para campañas, tiendas online, portales de clientes y aplicaciones web a medida. Todos son responsive, rápidos y preparados para posicionarse en buscadores.</p>
+          </details>
+          <details>
+            <summary>¿Pueden desarrollar un sistema totalmente personalizado? <span class="plus"><i data-lucide="plus"></i></span></summary>
+            <p>Sí. Relevamos tus procesos, diseñamos la solución junto a tu equipo y construimos un sistema a medida: gestión interna, turnos, inventario, facturación, CRM o cualquier flujo específico de tu negocio.</p>
+          </details>
+          <details>
+            <summary>¿Cuánto tiempo lleva desarrollar un proyecto? <span class="plus"><i data-lucide="plus"></i></span></summary>
+            <p>Depende del alcance. Un sitio corporativo suele llevar entre 2 y 4 semanas; un sistema a medida, entre 1 y 4 meses. Al inicio definimos un cronograma por etapas con entregas parciales para que veas avances reales.</p>
+          </details>
+          <details>
+            <summary>¿Ofrecen mantenimiento y soporte? <span class="plus"><i data-lucide="plus"></i></span></summary>
+            <p>Sí. Ofrecemos planes de mantenimiento que incluyen actualizaciones, copias de seguridad, monitoreo, corrección de errores y mejoras evolutivas, con canales de soporte directos.</p>
+          </details>
+          <details>
+            <summary>¿Cómo solicito un presupuesto? <span class="plus"><i data-lucide="plus"></i></span></summary>
+            <p>Completá el formulario de contacto o escribinos por WhatsApp contándonos tu idea. Coordinamos una reunión sin cargo para entender el proyecto y te enviamos una propuesta detallada con alcance, plazos y costos.</p>
+          </details>
+          <details>
+            <summary>¿Pueden modernizar un sistema que ya tengo? <span class="plus"><i data-lucide="plus"></i></span></summary>
+            <p>Sí. Analizamos tu sistema actual y proponemos una migración progresiva: mejoras de interfaz, nuevas funcionalidades, migración de datos o reescritura por módulos, sin frenar la operación de tu empresa.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CONTACTO
+         ========================================================= -->
+    <section class="section section-alt contact" id="contacto" aria-labelledby="contact-title">
+      <div class="grid-bg" style="opacity:.7"></div>
+      <div class="glow" style="top:50%;left:25%;width:500px;height:500px;transform:translateY(-50%);background:rgba(40,120,255,.12)"></div>
+      <div class="container contact-grid">
+        <div class="reveal">
+          <p class="eyebrow">Contacto</p>
+          <h2 id="contact-title">¿TENÉS UN PROYECTO <span class="text-gradient">EN MENTE?</span></h2>
+          <p class="lead">Conversemos sobre tus ideas y encontremos juntos la solución tecnológica que tu empresa necesita.</p>
+          <ul class="contact-info">
+            <li><span class="icon-box"><i data-lucide="mail"></i></span><a href="mailto:contacto@nandutek.com"><small>Correo</small><b>contacto@nandutek.com</b></a></li>
+            <li><span class="icon-box"><i data-lucide="phone"></i></span><a href="tel:+595985542379"><small>Teléfono</small><b>+595 985 542 379</b></a></li>
+            <li><span class="icon-box"><i data-lucide="map-pin"></i></span><span><small>Ubicación</small><b>Paraguay</b></span></li>
+            <li><span class="icon-box"><i data-lucide="clock"></i></span><span><small>Horario</small><b>Lun a Vie · 9:00 a 18:00</b></span></li>
+          </ul>
+        </div>
+
+        <form class="card form reveal" id="contactForm" novalidate aria-label="Formulario de contacto" style="transition-delay:.1s">
+          <div class="form-grid">
+            <div class="field" data-field="name">
+              <label for="name">Nombre <em>*</em></label>
+              <input id="name" name="name" autocomplete="name" maxlength="100" placeholder="Tu nombre" />
+              <p class="error">Ingresá tu nombre.</p>
+            </div>
+            <div class="field">
+              <label for="company">Empresa</label>
+              <input id="company" name="company" autocomplete="organization" maxlength="120" placeholder="Nombre de tu empresa" />
+            </div>
+            <div class="field" data-field="email">
+              <label for="email">Correo electrónico <em>*</em></label>
+              <input id="email" name="email" type="email" autocomplete="email" maxlength="160" placeholder="nombre@empresa.com" />
+              <p class="error">Ingresá un correo electrónico válido.</p>
+            </div>
+            <div class="field">
+              <label for="phone">Teléfono</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="+595 9xx xxx xxx" />
+            </div>
+            <div class="field full">
+              <label for="service">Servicio de interés</label>
+              <select id="service" name="service">
+                <option value="">Seleccioná un servicio</option>
+                <option>Desarrollo web</option>
+                <option>Software a medida</option>
+                <option>Soluciones informáticas</option>
+                <option>Automatización de procesos</option>
+                <option>Integración de sistemas</option>
+                <option>Consultoría tecnológica</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="field full" data-field="message">
+              <label for="message">Descripción del proyecto <em>*</em></label>
+              <textarea id="message" name="message" rows="5" maxlength="3000" placeholder="Contanos brevemente qué necesitás, objetivos y plazos estimados."></textarea>
+              <p class="error">Contanos un poco más sobre tu proyecto (mínimo 10 caracteres).</p>
+            </div>
+          </div>
+
+          <p class="form-note">
+            Al enviar, se abrirá tu aplicación de correo (o WhatsApp) con la consulta ya escrita. Solo tenés que confirmar el envío.
+          </p>
+
+          <div class="form-buttons">
+            <button type="submit" class="btn btn-primary"><i data-lucide="send"></i> Enviar consulta</button>
+            <button type="button" class="btn btn-outline btn-wa" id="waBtn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.02c0-5.2 4.23-9.43 9.44-9.43 2.52 0 4.89.99 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.23 9.43-9.44 9.43m8.03-17.46A11.3 11.3 0 0 0 12.05.7C5.8.7.7 5.8.7 12.05c0 2 .52 3.95 1.52 5.67L.6 23.3l5.7-1.5a11.3 11.3 0 0 0 5.75 1.46h.01c6.25 0 11.35-5.1 11.35-11.35 0-3.03-1.18-5.88-3.33-8.02"/></svg>
+              Contactar por WhatsApp
+            </button>
+          </div>
+          <p class="form-foot">Los campos marcados con <span style="color:var(--electric-light)">*</span> son obligatorios. Usamos tus datos solo para responder tu consulta.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         INFORMACIÓN TÉCNICA (plegada, para público técnico)
+         ========================================================= -->
+    <section class="tech" id="tecnologias" aria-label="Lenguajes de programación">
+      <div class="container">
+        <details>
+          <summary>
+            <span class="l"><i data-lucide="code"></i><span><b>Información técnica</b><small>Lenguajes de programación que utilizamos</small></span></span>
+            <i data-lucide="chevron-down" class="chev"></i>
+          </summary>
+          <ul class="langs">
+            <li class="card card-hover" style="--brand:#6aa6e8"><span class="lang-icon" style="--icon:url(https://cdn.jsdelivr.net/npm/simple-icons@16/icons/cplusplus.svg)"></span>C++</li>
+            <li class="card card-hover"><span class="csharp">C#</span>C#</li>
+            <li class="card card-hover" style="--brand:#8993be"><span class="lang-icon" style="--icon:url(https://cdn.jsdelivr.net/npm/simple-icons@16/icons/php.svg)"></span>PHP</li>
+            <li class="card card-hover" style="--brand:#4b8bbe"><span class="lang-icon" style="--icon:url(https://cdn.jsdelivr.net/npm/simple-icons@16/icons/python.svg)"></span>Python</li>
+            <li class="card card-hover" style="--brand:#f7df1e"><span class="lang-icon" style="--icon:url(https://cdn.jsdelivr.net/npm/simple-icons@16/icons/javascript.svg)"></span>JavaScript</li>
+            <li class="card card-hover" style="--brand:#e34f26"><span class="lang-icon" style="--icon:url(https://cdn.jsdelivr.net/npm/simple-icons@16/icons/html5.svg)"></span>HTML</li>
+            <li class="card card-hover" style="--brand:#639bff"><span class="lang-icon" style="--icon:url(https://cdn.jsdelivr.net/npm/simple-icons@16/icons/css.svg)"></span>CSS</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="#inicio" class="logo" aria-label="Ñandutek — volver al inicio">
+          <img src="img/nandu-mark.png" alt="" />
+          <span class="logo-text"><span class="a">Ñandu</span><span class="b">tek</span></span>
+        </a>
+        <p class="about-text">Tecnología que impulsa tu futuro. Desarrollo web, software a medida y soluciones tecnológicas para empresas que buscan crecer.</p>
+        <!-- Redes sociales: cambiá los enlaces o borrá los <a> que no uses -->
+        <div class="socials">
+          <a href="https://www.linkedin.com/company/nandutek" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
+          <a href="https://www.instagram.com/nandutek" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16ZM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95C23.73 2.7 21.3.27 16.95.07 15.67.01 15.26 0 12 0Zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg></a>
+          <a href="https://github.com/nandutek" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3"/></svg></a>
+        </div>
+      </div>
+
+      <nav aria-label="Enlaces rápidos">
+        <h2>Enlaces rápidos</h2>
+        <ul class="footer-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Servicios">
+        <h2>Servicios</h2>
+        <ul class="footer-links">
+          <li><a href="#servicios">Desarrollo web</a></li>
+          <li><a href="#servicios">Software a medida</a></li>
+          <li><a href="#servicios">Soluciones informáticas</a></li>
+          <li><a href="#servicios">Automatización de procesos</a></li>
+          <li><a href="#servicios">Integración de sistemas</a></li>
+          <li><a href="#servicios">Consultoría tecnológica</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h2>Contacto</h2>
+        <address class="footer-contact">
+          <a href="mailto:contacto@nandutek.com"><i data-lucide="mail"></i> contacto@nandutek.com</a>
+          <a href="tel:+595985542379"><i data-lucide="phone"></i> +595 985 542 379</a>
+          <span><i data-lucide="map-pin"></i> Paraguay</span>
+        </address>
+        <a class="btn btn-outline btn-sm js-wa" href="#" target="_blank" rel="noopener noreferrer">Escribinos por WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© <span id="year"></span> Ñandutek. Todos los derechos reservados.</p>
+        <p>Tecnología que impulsa tu futuro.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Iconos (Lucide) -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+
+  <script>
+    /* =========================================================
+       CONFIGURACIÓN — cambiá acá los datos de contacto
+       ========================================================= */
+    const CONFIG = {
+      whatsapp: "595985542379",           // número internacional, sin "+" ni espacios
+      email: "contacto@nandutek.com",
+      rotatingWords: ["sitios web", "sistemas a medida", "automatizaciones", "integraciones"],
+    };
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const hasMouse = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    // Iconos
+    if (window.lucide) lucide.createIcons();
+
+    // Año del footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Enlaces de WhatsApp
+    const waUrl = (msg) => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+    document.querySelectorAll(".js-wa").forEach((a) => (a.href = waUrl("Hola Ñandutek, quiero consultar por un proyecto.")));
+
+    /* ---------- Header: fondo al hacer scroll + menú móvil ---------- */
+    const header = document.getElementById("header");
+    const menuBtn = document.getElementById("menuBtn");
+    const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    function setMenu(open) {
+      header.classList.toggle("open", open);
+      menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+      menuBtn.innerHTML = `<i data-lucide="${open ? "x" : "menu"}"></i>`;
+      if (window.lucide) lucide.createIcons();
+      document.body.style.overflow = open ? "hidden" : "";
+    }
+    menuBtn.addEventListener("click", () => setMenu(!header.classList.contains("open")));
+    document.querySelectorAll("#mobileMenu a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
+    window.addEventListener("keydown", (e) => e.key === "Escape" && setMenu(false));
+
+    /* ---------- Sección activa en el menú ---------- */
+    const sectionIds = ["inicio", "nosotros", "servicios", "proyectos", "proceso", "contacto"];
+    const navLinks = document.querySelectorAll('.nav a, #mobileMenu a:not(.btn)');
+    const visible = new Set();
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((e) => (e.isIntersecting ? visible.add(e.target.id) : visible.delete(e.target.id)));
+      const current = sectionIds.find((id) => visible.has(id));
+      if (current) navLinks.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + current));
+    }, { rootMargin: "-35% 0px -60% 0px" });
+    sectionIds.forEach((id) => { const el = document.getElementById(id); if (el) sectionObserver.observe(el); });
+
+    /* ---------- Aparición al hacer scroll ---------- */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("visible"); revealObserver.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -80px 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+    /* ---------- Título: palabras que aparecen desenfocadas ---------- */
+    document.querySelectorAll("[data-blur]").forEach((line) => {
+      const base = parseFloat(line.dataset.delay || "0");
+      const shine = line.classList.contains("text-shine-words");
+      const words = line.textContent.trim().split(" ");
+      line.innerHTML = words
+        .map((w, i) => `<span class="word${shine ? " text-shine" : ""}" style="animation-delay:${(base + i * 0.08).toFixed(2)}s">${w}${i < words.length - 1 ? "&nbsp;" : ""}</span>`)
+        .join("");
+    });
+
+    /* ---------- Texto rotativo ---------- */
+    const rotating = document.getElementById("rotating");
+    let wordIndex = 0;
+    if (!reducedMotion) {
+      setInterval(() => {
+        rotating.classList.add("out");
+        setTimeout(() => {
+          wordIndex = (wordIndex + 1) % CONFIG.rotatingWords.length;
+          rotating.textContent = CONFIG.rotatingWords[wordIndex];
+          rotating.classList.remove("out");
+        }, 300);
+      }, 2400);
+    }
+
+    /* ---------- Inclinación 3D de la ilustración ---------- */
+    const illus = document.getElementById("illus");
+    const illusInner = document.getElementById("illusInner");
+    if (hasMouse && !reducedMotion) {
+      illus.addEventListener("pointermove", (e) => {
+        const r = illus.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        illusInner.style.transform = `rotateX(${(-y * 14).toFixed(2)}deg) rotateY(${(x * 14).toFixed(2)}deg)`;
+      });
+      illus.addEventListener("pointerleave", () => (illusInner.style.transform = ""));
+    }
+
+    /* ---------- Halo de luz en tarjetas ---------- */
+    if (hasMouse) {
+      document.addEventListener("pointermove", (e) => {
+        const card = e.target.closest && e.target.closest(".card");
+        if (!card) return;
+        const r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+        card.style.setProperty("--my", `${e.clientY - r.top}px`);
+      }, { passive: true });
+    }
+
+    /* ---------- Partículas conectadas en el fondo del hero ---------- */
+    (function particles() {
+      const canvas = document.getElementById("particles");
+      const ctx = canvas.getContext("2d");
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const LINK = 130;
+      const mouse = { x: -9999, y: -9999 };
+      let w = 0, h = 0, pts = [], raf = 0, running = false;
+
+      function resize() {
+        const r = canvas.getBoundingClientRect();
+        w = r.width; h = r.height;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const count = Math.min(90, Math.floor((w * h) / 14000));
+        pts = Array.from({ length: count }, () => ({
+          x: Math.random() * w, y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
+          r: Math.random() * 1.4 + 0.6,
+        }));
+        if (!running) draw();
+      }
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        for (let i = 0; i < pts.length; i++) {
+          const p = pts[i];
+          for (let j = i + 1; j < pts.length; j++) {
+            const q = pts[j];
+            const d = Math.hypot(p.x - q.x, p.y - q.y);
+            if (d < LINK) {
+              ctx.strokeStyle = `rgba(40,120,255,${0.22 * (1 - d / LINK)})`;
+              ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+            }
+          }
+          const dm = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+          if (dm < LINK * 1.4) {
+            ctx.strokeStyle = `rgba(56,198,255,${0.45 * (1 - dm / (LINK * 1.4))})`;
+            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+          }
+          ctx.fillStyle = dm < LINK ? "rgba(90,155,255,.95)" : "rgba(90,155,255,.55)";
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+        }
+      }
+      function step() {
+        for (const p of pts) {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > w) p.vx *= -1;
+          if (p.y < 0 || p.y > h) p.vy *= -1;
+          const dx = mouse.x - p.x, dy = mouse.y - p.y, d = Math.hypot(dx, dy);
+          if (d < 180 && d > 1) { p.x += (dx / d) * 0.25; p.y += (dy / d) * 0.25; }
+        }
+        draw();
+        raf = requestAnimationFrame(step);
+      }
+      const start = () => { if (running || reducedMotion) return; running = true; raf = requestAnimationFrame(step); };
+      const stop = () => { running = false; cancelAnimationFrame(raf); };
+
+      resize();
+      new ResizeObserver(resize).observe(canvas);
+      new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop())).observe(canvas);
+      const hero = canvas.parentElement;
+      hero.addEventListener("pointermove", (e) => { const r = canvas.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+      hero.addEventListener("pointerleave", () => { mouse.x = -9999; mouse.y = -9999; });
+    })();
+
+    /* ---------- Preguntas frecuentes: una abierta a la vez ---------- */
+    const faqItems = document.querySelectorAll("#faqList details");
+    faqItems.forEach((d) => d.addEventListener("toggle", () => {
+      if (d.open) faqItems.forEach((o) => o !== d && (o.open = false));
+    }));
+
+    /* ---------- Formulario de contacto ---------- */
+    const form = document.getElementById("contactForm");
+    const serviceSelect = document.getElementById("service");
+
+    // "Solicitar información" preselecciona el servicio
+    document.querySelectorAll("[data-service]").forEach((a) =>
+      a.addEventListener("click", () => (serviceSelect.value = a.dataset.service))
+    );
+
+    function getData() {
+      const f = new FormData(form);
+      return Object.fromEntries([...f.entries()].map(([k, v]) => [k, String(v).trim()]));
+    }
+    function validate(d) {
+      const errors = {};
+      if (d.name.length < 2) errors.name = true;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)) errors.email = true;
+      if (d.message.length < 10) errors.message = true;
+      form.querySelectorAll("[data-field]").forEach((el) => el.classList.toggle("invalid", !!errors[el.dataset.field]));
+      const first = Object.keys(errors)[0];
+      if (first) document.getElementById(first).focus();
+      return !first;
+    }
+    function buildMessage(d) {
+      return [
+        `Hola Ñandutek, soy ${d.name}${d.company ? ` de ${d.company}` : ""}.`,
+        d.service && `Me interesa: ${d.service}.`,
+        d.message,
+        "",
+        `Correo: ${d.email}`,
+        d.phone && `Teléfono: ${d.phone}`,
+      ].filter((l) => l !== "" && l !== undefined && l !== false).join("\n");
+    }
+    form.querySelectorAll("input, textarea").forEach((el) =>
+      el.addEventListener("input", () => el.closest(".field").classList.remove("invalid"))
+    );
+
+    // Enviar consulta: abre el correo con el mensaje armado
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const d = getData();
+      if (!validate(d)) return;
+      const subject = `Nueva consulta: ${d.service || "Proyecto"} — ${d.name}`;
+      window.location.href = `mailto:${CONFIG.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(buildMessage(d))}`;
+    });
+
+    // WhatsApp: abre el chat con el mensaje armado
+    document.getElementById("waBtn").addEventListener("click", () => {
+      const d = getData();
+      const msg = d.name || d.message ? buildMessage(d) : "Hola Ñandutek, quiero consultar por un proyecto.";
+      window.open(waUrl(msg), "_blank", "noopener");
+    });
+  </script>
+</body>
+</html>
