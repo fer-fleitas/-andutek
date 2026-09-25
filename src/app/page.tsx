@@ -11,7 +11,6 @@ import { Faq } from "@/components/sections/Faq";
 import { Contact } from "@/components/sections/Contact";
 import { Marquee } from "@/components/effects/Marquee";
 import { SpotlightTracker } from "@/components/effects/SpotlightTracker";
-import { NanduCompanion } from "@/components/effects/NanduCompanion";
 import { services } from "@/data/content";
 
 export default function HomePage() {
@@ -32,7 +31,6 @@ export default function HomePage() {
       </main>
       <Footer />
       <SpotlightTracker />
-      <NanduCompanion />
     </>
   );
 }
